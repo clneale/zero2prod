@@ -11,5 +11,6 @@ pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
     })
         .listen(listener)?
         .run();
+    println!("HTTP Server Started up!!!");
     Ok(server)
 }

@@ -7,5 +7,6 @@ pub struct FormData {
 }
 
 pub async fn subscribe(form: web::Form<FormData>) -> HttpResponse {
+    print!("{} : {}", form.name, form.email);
     HttpResponse::Ok().finish()
 }
