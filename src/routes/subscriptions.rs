@@ -25,17 +25,14 @@ pub async fn subscribe(form: web::Form<FormData>, db_pool: web::Data<PgPool>) ->
         Ok(email) => email,
         Err(_) => return HttpResponse::BadRequest().finish(),
     };
-    
+
     let name = match SubscriberName::parse(form.0.name) {
         Ok(name) => name,
         Err(_) => return HttpResponse::BadRequest().finish(),
     };
     // `web::Form` is wrapper around `FormData`
     // `form.0` gives us access to the underlying `FormData`
-    let new_subscriber = NewSubscriber {
-        email,
-        name,
-    };
+    let new_subscriber = NewSubscriber { email, name };
 
     match insert_subscriber(&db_pool, &new_subscriber).await {
         Ok(_) => {
