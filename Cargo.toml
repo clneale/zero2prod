@@ -30,6 +30,11 @@ uuid = { version = "1", features = ["v4"] }
 unicode-segmentation = "1"
 validator = "0.20"
 
+[dependencies.reqwest]
+version = "0.12"
+default-features = false
+features = ["json", "rustls-tls"]
+
 [dependencies.sqlx]
 version = "0.8"
 default-features = false
@@ -43,9 +48,11 @@ features = [
 ]
 
 [dev-dependencies]
-reqwest = "0.12"
+tokio = { version = "1", features = ["macros", "rt"] }
 claims = "0.7"
 fake = "2.9"
 quickcheck = "1.0.3"
 quickcheck_macros = "1"
 rand = "0.8"
+wiremock = "0.6"
+serde_json = "1"
